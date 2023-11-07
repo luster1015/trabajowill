@@ -1,0 +1,25 @@
+version: '3'
+services:
+  mi-aplicacion:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8026:80"
+    volumes:
+    - ./datadrive:/juanguillermo-2672501/datadrive
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3317:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: mysecret
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: myuserpassword
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
